@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:light');
+
+@media only screen and (max-width: 400px) {
+    * {
+    	width: 100%;
+    }
+
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .secondary button{
+    	background-color: var(--secondary-color)!important;
+     	border:1px solid var(--background-color)!important;
+     	color: var(--primary-color)!important;
+     	text-decoration: none!important;
+	}
+
+	.secondary button:hover{
+		color: var(--accent-color)!important;
+		filter: brightness(95%);
+	}
+
+	#examples li:after {
+		display: none;
+	}
+}
+
+.hide{
+	display: none;
+}
+
+.show{
+	display: inline-block;
+}
+
+html{
+	--accent-color: #2185d0;
+	--accent-color-dark: #1074BF;
+	--accent-color-darker: #076BB6;
+	--primary-color: black; /*#304050;*/
+	--secondary-color: lightgrey;
+	--background-color: #FEFEFE;
+
+	line-height: 1.5;
+}
+
+* {
+	word-break: break-all;
+	word-break: break-word; // Webkit-Browser
+	box-sizing: border-box;
+
+	/*color: var(--primary-color);*/
+}
+
+body { 
+	font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+	font-size: 14px;
+
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: .75rem;
+    padding-right: .75rem;
+	background-color: var(--background-color);
+}
+
+#searchModule{
+	min-width: inherit;
+	width: inherit;
+}
+
+.col-1 {
+	width: 90px;
+}
+
+.col-3 {
+	width: calc(100% - 90px);
+}
+
+[class*="col-"] {
+    float: left;
+    height: 50px;
+}
+
+.narrow-1 {
+	width: 5%;
+}
+
+.narrow-2 {
+	width: 95%;
+}
+
+[class*="narrow-"] {
+    float: left;
+    height: 30px;
+}
+
+.row {
+	height: 100%;
+	width: 100%;
+}
+
+/*.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}*/
+
+.description {
+	width: 100%;
+	/*text-align: justify;*/
+	hyphens: auto;
+}
+
+#narrow_options p label {
+	cursor: pointer;
+}
+
+.secondary {
+	color: var(--secondary-color);
+}
+
+.secondary span{
+	color: inherit;
+}
+
+.secondary button{
+     background-color: transparent;
+     color:inherit;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+     text-decoration: underline;
+}
+
+.secondary button:hover{
+	text-decoration: underline;
+	color: var(--accent-color);
+}
+
+.secondary button:active{
+	text-decoration: underline;
+	color: var(--accent-color-darker);
+}
+
+.secondary button:focus{
+	outline:0;
+}
+
+#examples{
+	display: inline;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	color: inherit;
+}
+
+#examples li {
+  display: inline;
+  padding: 0px;
+  color: inherit;
+}
+
+#examples li:after {
+	margin: -2px;
+	content: ',';
+}
+
+#examples li:last-child:after {
+    content: "";
+}
+
+#searchInput:hover{
+	border:1px solid var(--accent-color);
+}
+
+.response{
+	display: inline-block;
+	width: 100%;
+	margin-top: 2em;
+}
+
+#resultslist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 2em;
+}
+
+.result {
+	list-style: none;
+	margin-bottom: 2em;
+	background-color: var(--background-color);
+	/*filter: drop-shadow(4px 4px 4px lightgrey);*/
+	border: 1px solid var(--accent-color);
+	border-radius: 5px;
+	padding: 1em;
+}
+
+.result div{
+	margin: 0.5em;
+}
+
+/*.result div label{}*/
+
+.term{
+	font-weight: 900;
+}
+
+/*.terminology{}*/
+
+/*overwrite semantic ui classes*/
+
+.ui.input input, .ui.button {
+	font-family: inherit;
+	font-weight: 700;
+	background: var(--accent-color) none;
+}
+
+.ui.button {
+	color: white;
+	border: none;
+}
+
+.ui.button:hover, .ui.button:focus{
+	color: white;
+	background: var(--accent-color-dark) none;
+	/*filter: brightness(95%);*/
+	border: none;
+}
+
+.ui.button:active {
+	color: white;
+	background: var(--accent-color-darker) none;
+	/*filter: brightness(90%);*/
+	border: none;
+}
+
+.ui.button:disabled{
+	color: white;
+	background: var(--accent-color) none;
+	opacity: .45!important;
+	border: none;
+}
+
+i.icon{
+	color: var(--accent-color);
+}
+
+.ui.input.focus input,
+div.ui.fluid.search.dropdown.selection.multiple.active.visible,
+.ui.selection.dropdown:hover,
+.ui.selection.active.dropdown:hover,
+.ui.selection.active.dropdown .menu{
+	border: 1px solid var(--accent-color);
+}
+
+div.ui.fluid.search.dropdown.selection.multiple.active > div.menu.transition.visible{
+border: 1px solid var(--accent-color);		
+}

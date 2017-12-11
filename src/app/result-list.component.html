@@ -1,0 +1,87 @@
+<div id="results">
+	<div *ngIf="results">
+		<div *ngIf="results?.length > 0; else noResult">
+			<div class="ui message">
+			  <div class="header">
+				Search results
+			  </div>
+			  <span *ngIf="results?.length > 1; else oneResult">There are {{resultCount}} search results.</span>
+			  <ng-template #oneResult>
+			  	There is {{resultCount}} search result.
+			  </ng-template>
+			</div>
+
+		</div>
+		
+		<ng-template #noResult>
+			<div class="ui warning message">
+			  <div class="content">
+				  <div class="header">
+				    No results
+				  </div>
+				  <div class="description">
+				  Sorry, there are no results for your search term.
+				</div>
+			</div>
+			</div>
+		</ng-template>
+	</div>
+
+<!-- result list in card style -->
+	<ul id="resultslist">
+	  <li *ngFor="let result of results" class="result"> 	    
+		  	<div>
+		  		<label class="term">
+		  			<span *ngIf="result?.label; else noLabel">{{result.label}}</span>
+			  		<ng-template #noLabel>
+						<span>(no label)</span>
+			  		</ng-template>
+		  		</label>		  		
+		  		<label class="terminology">({{result.sourceTerminology}})</label>
+		  	</div>
+		  	<div *ngIf="result?.uri">
+		  		<a *ngIf="result?.uri.startsWith('http'); else noUrl" href={{result.uri}} (click)="onUriClick($event)">{{result.uri}}</a>
+		  		<ng-template #noUrl>
+		  			<label>{{result.uri}}</label>
+		  		</ng-template>
+		  	</div>
+		  	<div *ngIf="result?.url">
+				<a href={{result.url}} (click)="onUriClick($event)">{{result.url}}</a>
+		  	</div>
+		  	<div *ngIf="result.description">Description: {{result.description}}</div>
+		  	<div *ngIf="result.synonyms">Synonyms: {{result.synonyms}}{{result.commonNames}}</div>
+	  </li>
+	</ul>
+
+<!-- result list in semantic ui card style -->
+<!-- 	<div class="ui cards" id="resultslist" *ngFor="let result of results">
+		<div class="ui fluid card">
+		  <div class="content">
+		    <div class="header">
+		  			<span *ngIf="result?.label; else noLabel">{{result.label}}</span>
+			  		<ng-template #noLabel>
+						<span>(no label)</span>
+			  		</ng-template>
+		    </div>
+		    <div class="meta">{{result.sourceTerminology}}</div>
+		    
+			<div *ngIf="result?.uri">
+		  		<a *ngIf="result?.uri.startsWith('http'); else noUrl" href={{result.uri}} (click)="onUriClick($event)">{{result.uri}}</a>
+		  		<ng-template #noUrl>
+		  			<label>{{result.uri}}</label>
+		  		</ng-template>
+		  	</div>
+		  	<div *ngIf="result?.url">
+				<a href={{result.url}} (click)="onUriClick($event)">{{result.url}}</a>
+		  	</div>
+
+		    <div class="description" *ngIf="result.description">
+		      <p>Description: {{result.description}}</p>
+		    </div>
+		  </div>
+		  <div class="extra content" *ngIf="result.synonyms || result.commonNames">
+			    Synonyms: {{result.synonyms}}{{result.commonNames}}
+		  </div>
+		</div>
+	</div> -->
+</div>

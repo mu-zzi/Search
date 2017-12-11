@@ -1,0 +1,127 @@
+<div id="searchWidget">
+<div id="searchInterface">
+	<p id="description" class="description">
+		The search service includes all labels, synonyms, common names and abbreviations when provided by terminologies.
+	</p>
+	
+	<p>
+		<span class="ui primary action" id="searchModule">
+			<div class="col-3">
+				<span class="ui fluid input left icon row focus">
+					<input class="prompt" type="text" placeholder="Search for a term" id="searchInput" [(ngModel)]="searchInput" required #input>
+					<i class="ui search icon"></i>
+				</span>
+			</div>
+
+			<div class="col-1">
+				<button class="ui button row" [disabled]="!input.value" (click)="performSearch()" id="searchButton">Search</button>			
+			</div>
+		</span>
+	</p>
+
+	<p class="ui left secondary">
+		<span>
+			<span>Try the following examples: </span>
+			<ul id="examples">
+				<li>
+					<button (click)="onExampleClick($event)" value={{example_term1}}>{{example_term1}}</button>
+				</li>
+				<li>
+					<button (click)="onExampleClick($event)" value={{example_term2}}>{{example_term2}}</button>
+				</li>
+				<li>
+					<button (click)="onExampleClick($event)" value={{example_term3}}>{{example_term3}}</button>
+				</li>
+			</ul>
+		</span>
+	</p>
+
+	<div id="narrow_options" class="ui">
+		<p>Narrow search results to...</p>
+		<p>
+			<label>
+				<div class="narrow-1">
+					<input type="checkbox" name="matchType" [(ngModel)]="matchType" tabindex="3" class="ui checkbox">
+				</div>
+				<div class="narrow-2">
+					<span>Exact search term​</span>
+				</div>
+			</label>
+		</p>
+
+		<p>
+			<label>
+				<div class="narrow-1">
+				<input type="checkbox" name="firstMatch" [(ngModel)]="firstMatch" tabindex="4" class="ui checkbox secondary">
+				</div>
+				<div class="narrow-2">
+					<span>First matching terminology</span>
+				</div>
+			</label>
+		</p>
+
+		<p>
+			<label>
+				<div class="narrow-1">
+				<input type="checkbox" name="internalOnly" [(ngModel)]="internalOnly" tabindex="5" class="ui checkbox primary">
+				</div>
+				<div class="narrow-2">
+					<span>Internal terminologies only</span>
+				</div>
+			</label>
+		</p>
+
+		<p>
+			<span>
+					<div class="narrow-1"></div>
+					<div class="narrow-2" style="height: auto;" id="ptDropdown">
+						<div><label for="particularTerminologies">Particular terminologies</label>
+							<span class="hide" [ngClass]="{'show' : loadingTerminologies}"> 
+								<div class="ui mini active inline loader"></div>
+							</span>
+						</div>
+						<select class="ui fluid search dropdown" multiple="" id="particularTerminologies" [(ngModel)]="selectedTerminologies">
+							<option class="ui background" *ngFor="let terminology of terminologies" [ngValue]="terminology.acronym">
+								{{terminology.acronym}} ({{terminology.name}})
+							</option>
+						</select>
+						<div class="secondary">
+							<button (click)="clearParticularTerminologies()">clear selection</button>
+						</div>
+					</div>
+			</span>
+		</p>
+	</div>
+</div>
+
+<div class="response" id="searchResponse">
+	<div *ngIf="loading; then progressBlock else resultsBlock"></div>
+	<ng-template #progressBlock>
+		<div class="ui">
+		  <div class="ui active inverted dimmer">
+		    <div class="ui loader"></div>
+		  </div>
+		  <p></p>
+		</div>
+	</ng-template>
+	
+	<ng-template #resultsBlock>
+
+		<p *ngIf="error; else resultList">
+			<span>
+				<div class="ui error message">
+					<div class="header">
+						We're sorry there was an error
+					</div>
+					<p>
+						Please contact us at <a href={{contactUrl}}>{{contactUrl}}</a>
+					</p>
+				</div>
+			</span>
+		</p>
+
+		<ng-template #resultList><result-list [results]="results" id="searchResults"></result-list></ng-template>
+
+	</ng-template>
+</div>
+</div>

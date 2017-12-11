@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:light');
+
+* {
+	font-family: 'Roboto', sans-serif;
+	font-variant: 'light';
+	font-size: 16px;
+	color: black;
+	--accent-color: #3399FF;
+}
+
+.secondary{
+	color: #999;
+}
+
+.example {
+	font-style: italic;
+}
+
+.main-search {
+	border-color: var(--accent-color);
+}
+
+input[type="search"] {
+	color: var(--accent-color);
+}
